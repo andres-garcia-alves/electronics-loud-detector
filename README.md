@@ -1,6 +1,6 @@
-# Audio Loud Detector
+# Loud Detector
 
-A loud detector based on ATtiny85.
+A loud detector based on ATtiny85.  
 Sensitivity threshold and buzzer volume can be configured through trimmers.  
 Schematics diagram + PCB diagram (KiCAD 9) and case 3D model (Blender) are also provided.  
 
@@ -52,7 +52,7 @@ Schematics diagram + PCB diagram (KiCAD 9) and case 3D model (Blender) are also 
 
 | Assembly                                             | Assembly                                             |
 |------------------------------------------------------|------------------------------------------------------|
-| ![](Resources/99-comming-soon.jpg)                   | ![](Resources/99-comming-soonjpg)                    |
+| ![](Resources/99-comming-soon.jpg)                   | ![](Resources/99-comming-soon.jpg)                    |
 
 | Schematics Diagram                                   | PCB Diagram                                          |
 |------------------------------------------------------|------------------------------------------------------|
