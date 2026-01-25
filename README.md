@@ -52,15 +52,15 @@ Schematics diagram + PCB diagram (KiCAD 9) and case 3D model (Blender) are also 
 
 | Assembly                                             | Assembly                                             |
 |------------------------------------------------------|------------------------------------------------------|
-| ![](Resources/99-comming-soon.jpg)                   | ![](Resources/99-comming-soon.jpg)                    |
-
-| Schematics Diagram                                   | PCB Diagram                                          |
-|------------------------------------------------------|------------------------------------------------------|
 | ![](Resources/99-comming-soon.jpg)                   | ![](Resources/99-comming-soon.jpg)                   |
+
+| Schematics Diagram                                   | PCB Layout                                           |
+|------------------------------------------------------|------------------------------------------------------|
+| ![](Resources/04-schematics-diagram.png)             | ![](Resources/05-pcb-layout.png)                     |
 
 | PCB Render 3D                                        | PCB Render 3D                                        |
 |------------------------------------------------------|------------------------------------------------------|
-| ![](Resources/99-comming-soon.jpg)                   | ![](Resources/99-comming-soon.jpg)                   |
+| ![](Resources/06-pcb-render-3d-front.png)            | ![](Resources/06-pcb-render-3d-bottom.png)           |
 
 | Case 3D Model                                        | Project Final                                        |
 |------------------------------------------------------|------------------------------------------------------|
