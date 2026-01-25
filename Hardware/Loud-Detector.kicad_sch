@@ -4575,7 +4575,7 @@
 		(dnp no)
 		(uuid "64a16ac3-7303-44b9-9b36-0c3a78cd1951")
 		(property "Reference" "U1"
-			(at 77.724 98.298 0)
+			(at 77.724 99.06 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4584,7 +4584,7 @@
 			)
 		)
 		(property "Value" "ATtiny85"
-			(at 74.93 100.33 0)
+			(at 74.93 101.854 0)
 			(effects
 				(font
 					(size 1.27 1.27)

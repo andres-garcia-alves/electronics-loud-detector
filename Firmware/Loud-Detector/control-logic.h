@@ -1,26 +1,18 @@
 #pragma once
 #include "hardware.h"
+#include "low-power.h"
 
 // behavior tuning
-#define BUZZ_LEVEL_DELTA  25      // noise level-1 or level-2
-#define BUZZ_LEVEL1_MS    5000UL  // 5 seconds
-#define BUZZ_LEVEL2_MS    10000UL // 10 seconds
-#define COOLDOWN_MS       1500UL  // prevents rapid re-triggering
+#define BUZZ_LEVEL_DELTA  15        // noise level-1 or level-2
+#define BUZZ_LEVEL1_MS    5000UL    // 5 seconds
+#define BUZZ_LEVEL2_MS    10000UL   // 10 seconds
 
 // state
 bool buzzing = false;
-unsigned long lastTrigger = 0;
-unsigned long triggerEndMillis = 0;
+unsigned long triggerEnd = 0;
 
 
-// don't trigger again until COOLDOWN_MS
-bool checkBuzzLastTrigger()
-{
-  unsigned long now = millis();
-
-  if (now - lastTrigger < COOLDOWN_MS) { delay(20); return true; }
-  return false;
-}
+bool inline isBuzzing() { return buzzing; }
 
 // if buzzing, keep it for BUZZ_DURATION_MS
 void checkBuzzStop()
@@ -29,18 +21,27 @@ void checkBuzzStop()
 
   unsigned long now = millis();
 
-  if (now > triggerEndMillis) {
+  if (now > triggerEnd) {
     buzzing = false;
-    lastTrigger = now;
     buzzStop();
   }
 
   delay(10);
 }
 
+int calculateThreshold2(int threshold1)
+{
+  int delta = BUZZ_LEVEL_DELTA + (threshold1 / 5);  // BUZZ_LEVEL_DELTA (fixed value) + 20% of threshold1
+  if (delta < 20) { delta = 20; }                   // clamping minimum
+  if (delta > 70) { delta = 70; }                   // clamping maximum
+  
+  return threshold1 + delta;
+}
+
 void checkLoudEnvironment()
 {
-  // turn-on mic for sensing window
+  // turn-on ADC & mic sensor for sensing window
+  adcOn();
   micPowerOn();
 
   // measure sound energy
@@ -48,9 +49,10 @@ void checkLoudEnvironment()
 
   // read sensitivity knob
   int threshold1 = adcThresholdPeakToPeak();
-  int threshold2 = threshold1 + BUZZ_LEVEL_DELTA;
+  int threshold2 = calculateThreshold2(threshold1);
 
-  // turn-off mic to save power
+  // turn-off ADC & mic sensor to save power
+  adcOff();
   micPowerOff();
 
   // trigger condition
@@ -59,14 +61,15 @@ void checkLoudEnvironment()
     LoudLevel level = (peakToPeak > threshold2) ? LEVEL2 : LEVEL1;
     unsigned long extendUntil = millis() + ((peakToPeak > threshold2) ? BUZZ_LEVEL2_MS : BUZZ_LEVEL1_MS);
   
-    if (!buzzing) {                       // if not buzzing, start
+    if (!buzzing) {     // if not buzzing, start
       buzzing = true;
       buzzStart(level);
-      triggerEndMillis = extendUntil;
+      triggerEnd = extendUntil;
     }
     else {
-      // if already buzzing, then extended time
-      if (buzzing && extendUntil > triggerEndMillis) { triggerEndMillis = extendUntil; }
+      // if already buzzing, extend time
+      if (buzzing && extendUntil > triggerEnd) { triggerEnd = extendUntil; }
+
       // if loud rises, turn-on LED2
       if (buzzing && level == LEVEL2) { digitalWrite(PIN_LED2, HIGH); }
     }

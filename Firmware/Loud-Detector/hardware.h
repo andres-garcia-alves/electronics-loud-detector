@@ -1,17 +1,18 @@
 #pragma once
 
 // pin mapping (ATtiny85)
-#define PIN_MIC_ENABLE    PB0     // PB0 -> controls Q1 high-side
+#define PIN_MIC_ENABLE    PB0     // PB0 -> Controls Q1 high-side
 #define PIN_BUZZ_LED      PB1     // PB1 -> Q2 base + LED1
-#define PIN_LED2          PB3     // PCB -> LED2
-#define PIN_MIC_ADC       A1      // PB2 (ADC1) -> KY-038 sensor, pin AO
-#define PIN_THR_ADC       A2      // PB4 (ADC2) -> RV1 sensitivity control
+#define PIN_LED2          PB2     // PB2 -> LED2
+
+#define PIN_MIC_ADC       A2      // PB4 (ADC2) -> KY-038 sensor (pin AO)
+#define PIN_THR_ADC       A3      // PB3 (ADC3) -> RV1 sensitivity control
 
 // inverse logic (Q1: BC557)
 #define MIC_ON            LOW
 #define MIC_OFF           HIGH
 
-// audio sensor parameters (KY-037)
+// audio sensor parameters (KY-037/KY-038)
 #define SENSOR_WARMUP_MS  20UL    // 20ms
 #define SENSOR_WINDOW_MS  40UL    // 30-60ms works well
 
@@ -19,23 +20,25 @@
 #define THR_MIN_P2P       8       // very sensitive
 #define THR_MAX_P2P       220     // very strict
 
+// variables + enums
 enum LoudLevel {LEVEL1, LEVEL2};
 
-void inline micPowerOn()   { digitalWrite(PIN_MIC_ENABLE, MIC_ON); delay(SENSOR_WARMUP_MS); }
-void inline micPowerOff()  { digitalWrite(PIN_MIC_ENABLE, MIC_OFF); }
+// funtions declaration + inline functions
+void inline micPowerOn()  { digitalWrite(PIN_MIC_ENABLE, MIC_ON); delay(SENSOR_WARMUP_MS); }
+void inline micPowerOff() { digitalWrite(PIN_MIC_ENABLE, MIC_OFF); }
 
 
+// module initialization
 void hardwareInit()
 {
   pinMode(PIN_MIC_ENABLE, OUTPUT);
-
   pinMode(PIN_MIC_ADC, INPUT);
-  micPowerOff();
-
+  pinMode(PIN_THR_ADC, INPUT);
   pinMode(PIN_BUZZ_LED, OUTPUT);
-  digitalWrite(PIN_BUZZ_LED, LOW);
-
   pinMode(PIN_LED2, OUTPUT);
+
+  micPowerOff();
+  digitalWrite(PIN_BUZZ_LED, LOW);
   digitalWrite(PIN_LED2, LOW);
 }
 
@@ -43,7 +46,7 @@ void hardwareInit()
 void buzzStart(LoudLevel loudLevel)
 {
   // digital ON (volume handled by analog trimmer RV2)
-  tone(PIN_BUZZ_LED, 2000);
+  tone(PIN_BUZZ_LED, 2000);   // 2 Khz
 
   if (loudLevel == LEVEL2) { digitalWrite(PIN_LED2, HIGH); }
 }

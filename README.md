@@ -73,6 +73,7 @@ See 'Resources' folder for more pictures & videos of the project.
 ### Version History
 
 v1.0 (2026.01.24) - Adding schematics, PCB layout and base firmware.  
+v1.1 (2026.01.25) - Update firmware: adding 'low-power' feature.  
 
 &nbsp;
 
