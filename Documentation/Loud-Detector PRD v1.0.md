@@ -23,12 +23,11 @@ Construir un detector autónomo de sonido fuerte basado en ATtiny85 que:
 ## 3. Alcance (MVP)
 
 - Sensor KY-038 analógico
-- Umbral configurable con potenciómetro
+- Sensibilidad de activación configurable con potenciómetro
 - Volumen buzzer configurable con potenciómetro
-- 2 LEDs indicadores solo durante evento
-- 2 niveles de umbral
+- 2 niveles/umbrales según intensidad detectada
 - Buzzer activo ~5/~10 segs si supera uno o ambos umbrales
-- Sin comunicaciones
+- 2 LEDs indicadores solo durante evento
 - Interruptor físico general
 
 
