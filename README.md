@@ -64,7 +64,7 @@ Schematics diagram + PCB diagram (KiCAD 9) and case 3D model (Blender) are also 
 
 | Case 3D Model                                        | Project Final                                        |
 |------------------------------------------------------|------------------------------------------------------|
-| ![](Resources/99-comming-soon.jpg)                   | ![](Resources/99-comming-soon.jpg)                   |
+| ![](Resources/07-case-3d-model.jpg)                  | ![](Resources/99-comming-soon.jpg)                   |
 
 See 'Resources' folder for more pictures & videos of the project.
 
