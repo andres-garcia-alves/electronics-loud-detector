@@ -2400,6 +2400,16 @@
 	)
 	(wire
 		(pts
+			(xy 132.08 90.17) (xy 134.62 90.17)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "148959e2-6dc4-4e09-a4a7-a70a8cb0dd54")
+	)
+	(wire
+		(pts
 			(xy 210.82 115.57) (xy 213.36 115.57)
 		)
 		(stroke
@@ -2727,16 +2737,6 @@
 			(type default)
 		)
 		(uuid "86f0229b-4b75-4cd4-829b-a5a1b2233255")
-	)
-	(wire
-		(pts
-			(xy 132.08 90.17) (xy 134.62 90.17)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "9228dc81-5402-400f-a91e-08c886e6bcd6")
 	)
 	(wire
 		(pts
@@ -5649,8 +5649,8 @@
 				)
 			)
 		)
-		(property "Value" "10K"
-			(at 136.652 90.17 90)
+		(property "Value" "5K"
+			(at 137.16 90.17 90)
 			(effects
 				(font
 					(size 1.27 1.27)

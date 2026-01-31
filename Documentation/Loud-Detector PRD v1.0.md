@@ -193,6 +193,13 @@ Resistencia mínima a GND 100–330Ω
   - Desactivar el BOD del ATtiny85
   - Desactivar Timer1 del ATtiny85 (revisar que no afecte al Buzzer)
 
+- Mejorar el rango útil de sensibilidad con:
+  - Hoy el trimmer se utiliza con el cursor al 25% (2.5k ohms) más allá del 50% no activa nunca
+  - Comprimir el rango (que RV1 nunca llegue a 0), para ganar sensibilida en el trimmer
+  - Para eso, agregar una resistencia en serie entre RV1 (su pata 1) y GND
+  - Valor ideal 2.2K
+  - Se puede "hilar fino" en el firmware ajustando THR_MIN_P2P / THR_MAX_P2P
+
 
 ## 14. Fuera de Alcance
 
