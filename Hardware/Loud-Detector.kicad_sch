@@ -3272,28 +3272,6 @@
 			)
 		)
 	)
-	(global_label "+5V"
-		(shape input)
-		(at 144.78 90.17 0)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "56609796-5309-43f3-97d7-7e2f8953545c")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 151.6357 90.17 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-				(hide yes)
-			)
-		)
-	)
 	(global_label "MIC_OUT"
 		(shape input)
 		(at 161.29 111.76 180)
@@ -3356,6 +3334,28 @@
 					(size 1.27 1.27)
 				)
 				(justify right)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "+5V"
+		(shape input)
+		(at 144.78 90.17 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "72d0d415-9f5a-4fb0-9f32-d1c9e1c41053")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 151.6357 90.17 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
 				(hide yes)
 			)
 		)
@@ -5649,8 +5649,8 @@
 				)
 			)
 		)
-		(property "Value" "5K"
-			(at 137.16 90.17 90)
+		(property "Value" "10K"
+			(at 136.652 90.17 90)
 			(effects
 				(font
 					(size 1.27 1.27)

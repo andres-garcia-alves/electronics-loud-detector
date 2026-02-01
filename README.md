@@ -48,7 +48,7 @@ Schematics diagram + PCB diagram (KiCAD 9) and case 3D model (Blender) are also 
 
 | Breadboard                                           | Assembly                                             |
 |------------------------------------------------------|------------------------------------------------------|
-| ![](Resources/01-breadboard.jpg)                     | ![](Resources/99-comming-soon.jpg)                   |
+| ![](Resources/01-breadboard.jpg)                     | ![](Resources/02-assembly-01.jpg)                    |
 
 | Assembly                                             | Assembly                                             |
 |------------------------------------------------------|------------------------------------------------------|
