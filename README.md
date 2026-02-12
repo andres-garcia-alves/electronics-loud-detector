@@ -48,7 +48,7 @@ Schematics diagram + PCB diagram (KiCAD 9) and case 3D model (Blender) are also 
 
 | Breadboard                                           | Assembly                                             |
 |------------------------------------------------------|------------------------------------------------------|
-| ![](Resources/01-breadboard.jpg)                     | ![](Resources/02-assembly-01.jpg)                    |
+| ![](Resources/01-breadboard.jpg)                     | ![](Resources/02-assembly.jpg)                       |
 
 | Assembly                                             | Assembly                                             |
 |------------------------------------------------------|------------------------------------------------------|
@@ -56,15 +56,19 @@ Schematics diagram + PCB diagram (KiCAD 9) and case 3D model (Blender) are also 
 
 | Schematics Diagram                                   | PCB Layout                                           |
 |------------------------------------------------------|------------------------------------------------------|
-| ![](Resources/04-schematics-diagram.png)             | ![](Resources/05-pcb-layout.png)                     |
+| ![](Resources/03-schematics-diagram.png)             | ![](Resources/04-pcb-layout.png)                     |
 
 | PCB Render 3D                                        | PCB Render 3D                                        |
 |------------------------------------------------------|------------------------------------------------------|
-| ![](Resources/06-pcb-render-3d-front.png)            | ![](Resources/06-pcb-render-3d-bottom.png)           |
+| ![](Resources/05-pcb-render-3d-front.png)            | ![](Resources/05-pcb-render-3d-bottom.png)           |
 
 | Case 3D Model                                        | Project Final                                        |
 |------------------------------------------------------|------------------------------------------------------|
-| ![](Resources/07-case-3d-model.jpg)                  | ![](Resources/99-comming-soon.jpg)                   |
+| ![](Resources/06-case-3d-model.jpg)                  | ![](Resources/07-project-final-01.jpg)               |
+
+| Project Final                                        | Project Final                                        |
+|------------------------------------------------------|------------------------------------------------------|
+| ![](Resources/07-project-final-02.jpg)               | ![](Resources/07-project-final-03.jpg)               |
 
 See 'Resources' folder for more pictures & videos of the project.
 
@@ -77,7 +81,7 @@ v1.1 (2026.01.25) - Update firmware: adding 'low-power' feature.
 v1.2 (2026.01.27) - Adding case 3D model.  
 v1.3 (2026.01.31) - PCB minor improvements.  
 v1.4 (2026.02.02) - Case 3D model minor improvements.  
-v1.5 (2026.02.12) - Case 3D model minor improvements.  
+v1.5 (2026.02.12) - Case 3D model minor improvements, update 'README.md'.  
 
 &nbsp;
 
