@@ -77,7 +77,7 @@ v1.1 (2026.01.25) - Update firmware: adding 'low-power' feature.
 v1.2 (2026.01.27) - Adding case 3D model.  
 v1.3 (2026.01.31) - PCB minor improvements.  
 v1.4 (2026.02.02) - Case 3D model minor improvements.  
-v1.5 (2026.02.11) - Case 3D model minor improvements.  
+v1.5 (2026.02.12) - Case 3D model minor improvements.  
 
 &nbsp;
 
