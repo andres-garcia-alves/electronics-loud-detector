@@ -10,7 +10,7 @@
 // state
 bool buzzing = false;
 unsigned long triggerEnd = 0;
-
+int noiseBase = 0;
 
 bool inline isBuzzing() { return buzzing; }
 
@@ -29,14 +29,23 @@ void checkBuzzStop()
   delay(10);
 }
 
-int calculateThreshold2(int threshold1)
+int calculateThresholdLevel2(int threshold1)
+{
+  int delta = threshold1 / 2;  // +50%
+  if (delta < 5)  { delta = 5; }
+  if (delta > 30) { delta = 30; }
+
+  return threshold1 + delta;
+}
+
+/*int calculateThresholdLevel2(int threshold1)
 {
   int delta = BUZZ_LEVEL_DELTA + (threshold1 / 5);  // BUZZ_LEVEL_DELTA (fixed value) + 20% of threshold1
   if (delta < 20) { delta = 20; }                   // clamping minimum
   if (delta > 70) { delta = 70; }                   // clamping maximum
   
   return threshold1 + delta;
-}
+}*/
 
 void checkLoudEnvironment()
 {
@@ -45,21 +54,32 @@ void checkLoudEnvironment()
   micPowerOn();
 
   // measure sound energy
-  int peakToPeak = micMeasurePeakToPeak();
+  int energy = micMeasureEnergy();
+  // int energy = micMeasurePeakToPeak();
+  
+  // actualizar ruido base solo si no está activado
+  if (!buzzing)
+  {
+    // filtro exponencial simple
+    noiseBase = (noiseBase * 7 + energy) / 8;
+  }
 
   // read sensitivity knob
-  int threshold1 = adcThresholdPeakToPeak();
-  int threshold2 = calculateThreshold2(threshold1);
+  // int threshold1 = adcThresholdEnergy();
+  // int threshold1 = adcThresholdPeakToPeak();
+  int userMargin = adcThresholdEnergy();   // ahora es margen
+  int threshold1 = noiseBase + userMargin;
+  int threshold2 = calculateThresholdLevel2(threshold1);
 
   // turn-off ADC & mic sensor to save power
   adcOff();
   micPowerOff();
 
   // trigger condition
-  if (peakToPeak > threshold1) {
+  if (energy > threshold1) {
 
-    LoudLevel level = (peakToPeak > threshold2) ? LEVEL2 : LEVEL1;
-    unsigned long extendUntil = millis() + ((peakToPeak > threshold2) ? BUZZ_LEVEL2_MS : BUZZ_LEVEL1_MS);
+    LoudLevel level = (energy > threshold2) ? LEVEL2 : LEVEL1;
+    unsigned long extendUntil = millis() + ((energy > threshold2) ? BUZZ_LEVEL2_MS : BUZZ_LEVEL1_MS);
   
     if (!buzzing) {     // if not buzzing, start
       buzzing = true;

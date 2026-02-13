@@ -4,7 +4,8 @@
   Sensor: KY-037/KY-038 (analog out)
 
   Features:
-  - Sound detection via peak-to-peak window
+  - Sound detection via energy (mean abosolute deviation)
+  - Sound detection via peak-to-peak window (OBSOLETE)
   - Sensitivity (threshold) via RV1 ADC
   - 2 noise levels (LED2 indicates LEVEL2)
   - Volume is 100% analog (RV2 in series with buzzer)

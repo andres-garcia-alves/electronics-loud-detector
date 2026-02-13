@@ -13,12 +13,14 @@
 #define MIC_OFF           HIGH
 
 // audio sensor parameters (KY-037/KY-038)
-#define SENSOR_WARMUP_MS  20UL    // 20ms
-#define SENSOR_WINDOW_MS  40UL    // 30-60ms works well
+#define SENSOR_WARMUP_MS  20UL    // 20 ms
+#define SENSOR_WINDOW_MS  40UL    // 40 ms
 
 // threshold mapping (RV1 -> peak-to-peak threshold)
-#define THR_MIN_P2P       8       // very sensitive
-#define THR_MAX_P2P       220     // very strict
+//#define THR_MIN_P2P       8       // very sensitive
+//#define THR_MAX_P2P       220     // very strict
+#define THR_MIN_ENERGY    2//5
+#define THR_MAX_ENERGY    30//60
 
 // variables + enums
 enum LoudLevel {LEVEL1, LEVEL2};
@@ -57,7 +59,38 @@ void buzzStop()
   digitalWrite(PIN_LED2, LOW);
 }
 
-int micMeasurePeakToPeak()
+int micMeasureEnergy()
+{
+  unsigned long start = millis();
+  long sum = 0;
+  int samples = 0;
+
+  // Primero estimamos el nivel medio
+  long mean = 0;
+  int count = 0;
+
+  while (millis() - start < SENSOR_WINDOW_MS)
+  {
+    int value = analogRead(PIN_MIC_ADC);
+    mean += value;
+    count++;
+  }
+
+  mean /= count;
+
+  // Segunda pasada: energía absoluta
+  start = millis();
+  while (millis() - start < SENSOR_WINDOW_MS)
+  {
+    int value = analogRead(PIN_MIC_ADC);
+    sum += abs(value - mean);
+    samples++;
+  }
+
+  return sum / samples;  // energía promedio
+}
+
+/*int micMeasurePeakToPeak()
 {
   int minRaw = 1023;
   int maxRaw = 0;
@@ -72,10 +105,20 @@ int micMeasurePeakToPeak()
   }
 
   return maxRaw - minRaw;
+}*/
+
+int adcThresholdEnergy()
+{
+  int thresholdRaw = analogRead(PIN_THR_ADC);   // 0..1023
+  int threshold = map(thresholdRaw, 0, 1023, THR_MIN_ENERGY, THR_MAX_ENERGY);
+
+  if (threshold < THR_MIN_ENERGY) { threshold = THR_MIN_ENERGY; }
+  if (threshold > THR_MAX_ENERGY) { threshold = THR_MAX_ENERGY; }
+
+  return threshold;
 }
 
-
-int adcThresholdPeakToPeak()
+/*int adcThresholdPeakToPeak()
 {
   int thresholdRaw = analogRead(PIN_THR_ADC);   // 0..1023
   int threshold = map(thresholdRaw, 0, 1023, THR_MIN_P2P, THR_MAX_P2P);
@@ -85,4 +128,4 @@ int adcThresholdPeakToPeak()
   if (threshold > THR_MAX_P2P) { threshold = THR_MAX_P2P; }
 
   return threshold;
-}
+}*/

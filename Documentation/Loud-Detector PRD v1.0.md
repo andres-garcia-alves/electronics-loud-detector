@@ -193,8 +193,6 @@ Resistencia mínima a GND 100–330Ω
     - aumentar ventana de muestreo (40 → 80 ms)
     - RMS o energía acumulada
     - rectificación + promedio
-    - filtro pasa-altos digital simple
-    - histéresis adaptativa
     - threshold dinámico relativo al ruido base
     - Todo eso: mejora sensibilidad, reduce falsos negativos, sin aumentar consumo
 
